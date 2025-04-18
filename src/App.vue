@@ -41,15 +41,6 @@
           <input type="number" v-model.number="options.queue_depth" :disabled="isLoading" min="1">
         </label>
 
-        <!--        <label>-->
-        <!--          Режим захвата:-->
-        <!--          <select v-model="options.capture_mode" :disabled="isLoading" title="Камни какого цвета можно захватывать">-->
-        <!--            <option value="both">Оба</option>-->
-        <!--            <option value="white_only">Только Белые</option>-->
-        <!--            <option value="black_only">Только Черные</option>-->
-        <!--          </select>-->
-        <!--        </label>-->
-
         <label>
           Одновременный захват:
           <select v-model="options.simultaneous_capture_rule" :disabled="isLoading"
@@ -98,7 +89,7 @@
         </div>
 
         <div v-if="initialStonesSetup.length > 0" class="pregame-stones-list">
-          <h3>Текущая фора:</h3>
+          <h3>Текущее состояние:</h3>
           <ul>
             <li v-for="(stone, index) in initialStonesSetup" :key="`handicap-${index}`">
               <span>({{ stone.row }}, {{ stone.col }}) - {{ stone.color === 'black' ? 'Черный' : 'Белый' }}</span>
@@ -108,7 +99,7 @@
             </li>
           </ul>
         </div>
-        <p v-else class="no-pregame-stones-msg">Фора не задана.</p>
+        <p v-else class="no-pregame-stones-msg">Предигровое состояние не задано.</p>
       </div>
       <button class="start-button" @click="startGame" :disabled="isLoading || hasActiveGame">
         Начать новую игру {{ initialStonesSetup.length > 0 ? `с форой (${initialStonesSetup.length})` : '' }}
